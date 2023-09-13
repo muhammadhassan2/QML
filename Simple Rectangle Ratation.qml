@@ -16,6 +16,7 @@ Window {
         width:200
         height:200
         color: "red"
+        radius: parent.width
         anchors.centerIn: parent
         Text {
             id: txt
@@ -27,15 +28,25 @@ Window {
             anchors.centerIn: parent
         }
         RotationAnimation{
-            id:anim
+            id:animation
             target: shape
             loops: Animation.Infinite
             from:shape.rotation
-            to:360
+            to:59
             direction: RotationAnimation.Clockwise
-            duration:3000
+            duration:1000
             running: true
 
+        }
+        MouseArea{
+            id:area
+            anchors.fill: parent
+            onClicked: {
+                if(animation.paused){
+                    animation.resume()
+                }
+                else animation.pause()
+            }
         }
 
     }
